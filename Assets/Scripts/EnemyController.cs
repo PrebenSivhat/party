@@ -7,12 +7,14 @@ public class EnemyController : Movement
     public float MinSpeed;
     public float MaxRotationSpeed;
     public float MinRotationSpeed;
+    public Rigidbody2D _rbody;
 
     public ParticleSystem ExplosionParticle;
 
     private void Start()
     {
-      Move(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(MinSpeed, MaxSpeed));
+       _rbody = GetComponent<Rigidbody2D>();
+       Move(_rbody, Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(MinSpeed, MaxSpeed));
       }
 
     private void Update()

@@ -14,7 +14,6 @@ public class EnemySpawner : MonoBehaviour
 
     public float SpawnRate;
     public float MaximumEnemies;
-    public GameObject Enemy;
     public GameObject[] Enemies;
     private float SpawnTimer = 1f;
     private float[,] _coordinates;
@@ -23,7 +22,6 @@ public class EnemySpawner : MonoBehaviour
         
     }
 	
-	// Update is called once per frame
 	void Update ()
 	{
         SpawnTimer -= Time.deltaTime;
@@ -38,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
         
         while (transform.childCount < MaximumEnemies && SpawnTimer <= 0)
 	    {
-            SpawnEnemy(Random.Range(0,2));
+            SpawnEnemy(0);
 	        SpawnTimer = SpawnRate;
 	    }
     }
