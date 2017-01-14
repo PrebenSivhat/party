@@ -1,24 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : Movement
 {
     public float MaxSpeed;
     public float MinSpeed;
-    public ParticleSystem ExplosionParticle;
-    
+    public float MaxRotationSpeed;
+    public float MinRotationSpeed;
 
-    private Rigidbody2D rbody;
+    public ParticleSystem ExplosionParticle;
 
     private void Start()
     {
-        rbody = GetComponent<Rigidbody2D>();
-        Movement.Move(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 1);
-    }
+      Move(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(MinSpeed, MaxSpeed));
+      }
 
     private void Update()
     {
-
+     Rotate(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(MinRotationSpeed, MaxRotationSpeed));
     }
 
     private void OnTriggerEnter2D(Collider2D other)

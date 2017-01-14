@@ -8,7 +8,7 @@ using JetBrains.Annotations;
         public float RotationSpeed = 2f;
         public float MaxHealth = 5;
         public float CurrentHealth;
-
+        private Movement movement = new Movement();
        
         private string[] _playerInput;
 
@@ -16,8 +16,8 @@ using JetBrains.Annotations;
 
         private void Start()
         {
-            
             GetPlayerInput();
+            
         }
 
         private void Update()
@@ -27,8 +27,8 @@ using JetBrains.Annotations;
             var rotationInputX = Input.GetAxisRaw(_playerInput[2]);
             var rotationInputY = Input.GetAxisRaw(_playerInput[3]);
 
-            Movement.Move(inputX, inputY, PlayerSpeed);
-            Movement.Rotate(rotationInputX, rotationInputY, RotationSpeed);
+            movement.Move(inputX, inputY, PlayerSpeed);
+            movement.Rotate(rotationInputX, rotationInputY, RotationSpeed);
         }
 
         private void GetPlayerInput()
