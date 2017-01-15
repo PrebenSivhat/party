@@ -17,7 +17,7 @@ public class EnemyController : Movement
     {
        ConstantSpeed = Random.Range(MinSpeed, MaxSpeed);
        _rbody = GetComponent<Rigidbody2D>();
-       Move(_rbody, Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(MinSpeed, MaxSpeed));
+        Move(_rbody, Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(MinSpeed, MaxSpeed));
     }
 
     private void Update()

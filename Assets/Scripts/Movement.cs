@@ -4,7 +4,12 @@ using System.Collections;
 public class Movement : MonoBehaviour
 {
     public void Move(Rigidbody2D rbody, float input_x, float input_y, float speed) {
-        rbody.velocity = new Vector2(Mathf.Lerp(0, input_x, 10f)*speed, Mathf.Lerp(0, input_y, 1)*speed);
+        rbody.velocity = new Vector2(Mathf.Lerp(0, input_x, speed)*speed*0.8f, Mathf.Lerp(0, input_y, speed) * speed * 0.8f);
+    }
+
+    public void MoveSlow(Rigidbody2D rbody, float input_x, float input_y, float speed)
+    {
+        rbody.velocity = new Vector2(Mathf.Lerp(0, input_x, speed) * speed * 0.3f, Mathf.Lerp(0, input_y, speed) * speed * 0.3f);
     }
 
     public void Rotate(float inputX, float inputY, float speed) {
