@@ -4,15 +4,15 @@ using System.Collections;
 public class EnemyController : Movement
 {
     public float MaxSpeed;
-    public float MinSpeed;
+    public float MinSpeed;    
     public float MaxRotationSpeed;
     public float MinRotationSpeed;
 
+    private float ConstantSpeed;
     public Rigidbody2D _rbody;
 
     public ParticleSystem ExplosionParticle;
 
-    private float ConstantSpeed;
     private void Start()
     {
        ConstantSpeed = Random.Range(MinSpeed, MaxSpeed);

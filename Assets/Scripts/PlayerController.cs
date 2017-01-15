@@ -4,8 +4,8 @@ using JetBrains.Annotations;
 
 public class PlayerController : Movement
 {
-    public float PlayerSpeed = 3f;
-    public float RotationSpeed = 2f;
+    public float PlayerSpeed;
+    public float RotationSpeed;
     public float MaxHealth = 5;
     public float CurrentHealth;
     public Rigidbody2D _rbody;
