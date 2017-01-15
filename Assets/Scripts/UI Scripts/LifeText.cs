@@ -23,6 +23,12 @@ public class LifeText : MonoBehaviour
             case ("Player2"):
                 _lifeText.text = "Lives: " + HealthController.PlayerHealth2;
                 break;
+            case ("Player3"):
+                _lifeText.text = "Lives: " + HealthController.PlayerHealth3;
+                break;
+            case("Player4"):
+                _lifeText.text = "Lives: " + HealthController.PlayerHealth4;
+                break;
         }
 
     }

@@ -17,7 +17,7 @@ public class CollisionManager : MonoBehaviour {
     {
         if (other.tag == "Enemy")
         {
-            Debug.Log("Collided with enemy!!!");
+            //Debug.Log("Collided with enemy!!!");
             HealthController.Damage(gameObject);
             
 
