@@ -16,7 +16,7 @@ public class HealthController : MonoBehaviour
                 PlayerHealth1 -= 1;
                 if (PlayerHealth1 <= 0)
                 {
-                    Destroy(player);
+                    player.SetActive(false);
                 }
                 break;
 
@@ -24,7 +24,7 @@ public class HealthController : MonoBehaviour
                 PlayerHealth2 -= 1;
                 if (PlayerHealth2 <= 0)
                 {
-                    Destroy(player);
+                    player.SetActive(false);
                 }
                 break;
         }
