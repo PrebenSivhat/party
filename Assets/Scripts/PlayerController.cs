@@ -21,28 +21,47 @@ public class PlayerController : Movement
 
     private void Update()
     {
+        //Henter input-X og -Y fra player
         var inputX = Input.GetAxisRaw(_playerInput[0]);
         var inputY = Input.GetAxisRaw(_playerInput[1]);
+        //Henter Rotations-X og -Y fra player
         var rotationInputX = Input.GetAxisRaw(_playerInput[2]);
         var rotationInputY = Input.GetAxisRaw(_playerInput[3]);
-        Move(_rbody, inputX, inputY, PlayerSpeed);
-        Rotate(rotationInputX, rotationInputY, RotationSpeed);
-        if (slow == true) { MoveSlow(_rbody, inputX, inputY, PlayerSpeed); }
-        if ( Input.GetKeyDown("joystick button 0") ) { slow = true; }
-     }
+        //Hvis Fire1 triggers, sættes slow til true og timer ud efter 2s
+        if (Input.GetButtonDown("Fire1"))
+        {
+            StartCoroutine(SlowPlayer());
+        };
+
+
+        if (slow == true)
+        {
+            MoveSlow(_rbody, inputX, inputY, PlayerSpeed);
+            Rotate(rotationInputX, rotationInputY, RotationSpeed);
+        }
+        else
+        {
+            Move(_rbody, inputX, inputY, PlayerSpeed);
+            Rotate(rotationInputX, rotationInputY, RotationSpeed);
+        };
+    }
 
     private void GetPlayerInput()
     {
-
         if (tag == "Player1")
         {
-            _playerInput = new string[] {"Horizontal1", "Vertical1", "RotationX1", "RotationY1"};
+            _playerInput = new string[] { "Horizontal1", "Vertical1", "RotationX1", "RotationY1" };
         }
         else if (tag == "Player2")
         {
-            _playerInput = new string[] {"Horizontal2", "Vertical2", "RotationX2", "RotationY2"};
+            _playerInput = new string[] { "Horizontal2", "Vertical2", "RotationX2", "RotationY2" };
         }
-
     }
 
+    IEnumerator SlowPlayer()
+    {
+        slow = true;
+        yield return new WaitForSeconds(2);
+        slow = false;
     }
+}

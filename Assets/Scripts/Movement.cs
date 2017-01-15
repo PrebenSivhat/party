@@ -9,7 +9,12 @@ public class Movement : MonoBehaviour
 
     public void MoveSlow(Rigidbody2D rbody, float input_x, float input_y, float speed)
     {
-        rbody.velocity = new Vector2(Mathf.Lerp(0, input_x, speed) * speed * 0.3f, Mathf.Lerp(0, input_y, speed) * speed * 0.3f);
+        rbody.velocity = new Vector2(Mathf.Lerp(0, input_x, speed) * speed * 0.4f, Mathf.Lerp(0, input_y, speed) * speed * 0.4f);
+    }
+
+    public void MoveFast(Rigidbody2D rbody, float input_x, float input_y, float speed)
+    {
+        rbody.velocity = new Vector2(Mathf.Lerp(0, input_x, speed) * speed * 1.2f, Mathf.Lerp(0, input_y, speed) * speed * 1.2f);
     }
 
     public void Rotate(float inputX, float inputY, float speed) {
