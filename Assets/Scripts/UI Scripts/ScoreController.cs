@@ -1,36 +1,59 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Runtime.InteropServices.ComTypes;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreController : MonoBehaviour
 {
+    public static int PointsPlayer1;
+    public static int PointsPlayer2;
+    public static int PointsPlayer3;
+    public static int PointsPlayer4;
+    public static int Points;
 
     public static int scorePlayer1;
     public static int scorePlayer2;
-    public int[] points = { 1, 2, 3, 4 };
     public static bool PlayersAlive;
     public static bool CheckForAlivePlayers = true;
     public GameObject RestartButton;
-    //private bool _isAlivePlayer2;
+
+    private int _numberOfPlayersInGame;
 
 
-    void Start () {
+    void Awake()
+    {
         DontDestroyOnLoad(gameObject);
+    }
+
+    void Start ()
+    {
+        _numberOfPlayersInGame = 0;
+        CheckForAlivePlayers = true;
+
+        Debug.Log("Player1 has this many points in start of round: " + PointsPlayer1);
+        Debug.Log("Player2 has this many points in start of round: " + PointsPlayer2);
 
         if (GameObject.Find("Player1") != null)
         {
-            Debug.Log("player1 is alive");
+            Debug.Log("player1 is in the game!");
+            _numberOfPlayersInGame += 1;
         }
         if (GameObject.Find("Player2") != null)
         {
-            Debug.Log("player2 is alive");
+            Debug.Log("player2 is in the game!");
+            _numberOfPlayersInGame += 1;
+
         }
         if (GameObject.Find("Player3") != null)
         {
-            Debug.Log("player3 is alive");
+            Debug.Log("player3 is in the game!");
+            _numberOfPlayersInGame += 1;
+
         }
         if (GameObject.Find("Player4") != null)
         {
-            Debug.Log("player4 is alive");
+            Debug.Log("player4 is in the game!");
+            _numberOfPlayersInGame += 1;
         }
 
     }
@@ -66,10 +89,46 @@ public class ScoreController : MonoBehaviour
     }
     
 
-    void UpdateScore(int sP1, int sP2)
+    public static void UpdateScore(GameObject player)
     {
-        scorePlayer1 = sP1;
-        scorePlayer2 = sP2;
+        switch (player.tag)
+        {
+            case ("Player1"):
+                {
+                    PointsPlayer1 += Points;
+                    Points++;
+                    Debug.Log(player + "got this many points now: " + Points);
+                }
+                break;
+             case ("Player2"):
+                {
+                    PointsPlayer2 += Points;
+                    Points++;
+                    Debug.Log(player + "got this many points now: " + Points);
+
+
+                }
+                break;
+             case ("Player3"):
+                {
+                    PointsPlayer3 += Points;
+                    Points++;
+                    Debug.Log(player + "got this many points now: " + Points);
+
+
+                }
+                break;
+             case ("Player4"):
+                {
+                    PointsPlayer4 += Points;
+                    Points++;
+                    Debug.Log(player + "got this many points now: " + Points);
+
+                }
+                break;
+        }
+        
+
     }
 
     void CheckForPlayers()

@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class HealthController : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class HealthController : MonoBehaviour
                 if (PlayerHealth1 <= 0)
                 {
                     PlayerHealth1 = 0;
+                    ScoreController.UpdateScore(player);
                     player.SetActive(false);
                 }
                 break;
@@ -36,6 +38,7 @@ public class HealthController : MonoBehaviour
                 if (PlayerHealth2 <= 0)
                 {
                     PlayerHealth2 = 0;
+                    ScoreController.UpdateScore(player);
                     player.SetActive(false);
                 }
                 break;
@@ -44,6 +47,7 @@ public class HealthController : MonoBehaviour
                 if (PlayerHealth3 <= 0)
                 {
                     PlayerHealth3 = 0;
+                    ScoreController.UpdateScore(player);
                     player.SetActive(false);
                 }
                 break;
@@ -52,6 +56,7 @@ public class HealthController : MonoBehaviour
                 if (PlayerHealth4 <= 0)
                 {
                     PlayerHealth4 = 0;
+                    ScoreController.UpdateScore(player);
                     player.SetActive(false);
                 }
                 break;
