@@ -11,8 +11,6 @@ public class ScoreController : MonoBehaviour
     public static int PointsPlayer4;
     public static int Points;
 
-    public static int scorePlayer1;
-    public static int scorePlayer2;
     public static bool PlayersAlive;
     public static bool CheckForAlivePlayers = true;
     public GameObject RestartButton;
@@ -29,6 +27,16 @@ public class ScoreController : MonoBehaviour
     {
         _numberOfPlayersInGame = 0;
         CheckForAlivePlayers = true;
+        Points = 1;
+
+        if (Points != 1)
+        {
+            Debug.LogError("Points should be 0! instead points are: " + Points);
+        }
+        
+
+
+
 
         Debug.Log("Player1 has this many points in start of round: " + PointsPlayer1);
         Debug.Log("Player2 has this many points in start of round: " + PointsPlayer2);
@@ -71,6 +79,7 @@ public class ScoreController : MonoBehaviour
                 PlayersAlive = false;
                 CreateRestartButton();
                 CheckForAlivePlayers = false;
+                
 
             }
             else
@@ -97,14 +106,14 @@ public class ScoreController : MonoBehaviour
                 {
                     PointsPlayer1 += Points;
                     Points++;
-                    Debug.Log(player + "got this many points now: " + Points);
+                    Debug.Log(player + "got this many points now: " + PointsPlayer1);
                 }
                 break;
              case ("Player2"):
                 {
                     PointsPlayer2 += Points;
                     Points++;
-                    Debug.Log(player + "got this many points now: " + Points);
+                    Debug.Log(player + "got this many points now: " + PointsPlayer2);
 
 
                 }
@@ -113,7 +122,7 @@ public class ScoreController : MonoBehaviour
                 {
                     PointsPlayer3 += Points;
                     Points++;
-                    Debug.Log(player + "got this many points now: " + Points);
+                    Debug.Log(player + "got this many points now: " + PointsPlayer3);
 
 
                 }
@@ -122,7 +131,7 @@ public class ScoreController : MonoBehaviour
                 {
                     PointsPlayer4 += Points;
                     Points++;
-                    Debug.Log(player + "got this many points now: " + Points);
+                    Debug.Log(player + "got this many points now: " + PointsPlayer4);
 
                 }
                 break;
