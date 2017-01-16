@@ -47,9 +47,9 @@ public class EnemySpawner : MonoBehaviour
        
         var instance = Instantiate(Enemies[enemyIndex], new Vector2(_coordinates[arrayRandomizer,0], _coordinates[arrayRandomizer,1]), Quaternion.identity) as GameObject;
 
-        var randomSize = (Random.Range(0.1f, 2.5f));
-        instance.transform.localScale += new Vector3(randomSize, randomSize, 0);
-        instance.transform.parent = this.transform;
+        //var randomSize = (Random.Range(0.1f, 2.5f));
+        //instance.transform.localScale += new Vector3(randomSize, randomSize, 0);
+        //instance.transform.parent = this.transform;
    }
 
 }

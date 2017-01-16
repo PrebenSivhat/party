@@ -9,12 +9,14 @@ public class EnemyController : Movement
     public float MinRotationSpeed;
 
     private float ConstantSpeed;
+    private float ConstantRotationSpeed;
     public Rigidbody2D _rbody;
 
     public ParticleSystem ExplosionParticle;
 
     private void Start()
     {
+       ConstantRotationSpeed = Random.Range(MinRotationSpeed, MaxRotationSpeed);
        ConstantSpeed = Random.Range(MinSpeed, MaxSpeed);
        _rbody = GetComponent<Rigidbody2D>();
         Move(_rbody, Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(MinSpeed, MaxSpeed));
@@ -22,11 +24,11 @@ public class EnemyController : Movement
 
     private void Update()
     {
-        _rbody.velocity = ConstantSpeed * (_rbody.velocity.normalized);
-     Rotate(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(MinRotationSpeed, MaxRotationSpeed));
+     _rbody.velocity = ConstantSpeed * (_rbody.velocity.normalized);
+     Rotate(1f, -1f, ConstantRotationSpeed);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(PolygonCollider2D other)
     {
         switch (other.tag)
         {
