@@ -23,13 +23,15 @@ public class EnemySpawner : MonoBehaviour
     private float SpawnTimer = 1f;
     private float[,] _coordinates;
     
-	void Start () {
-        
-    }
+	void Start ()
+	{
+	    MaximumEnemies = StartEnemies;
+	}
 	
 	void Update ()
 	{
-        SpawnTimer -= Time.deltaTime;
+        //SpawnTimer -= Time.deltaTime;
+
 	    _coordinates = new float[4, 2]
 	    {
 	        {SpawnMinX,                             Random.Range(SpawnMinY, SpawnMaxY)},
@@ -40,6 +42,7 @@ public class EnemySpawner : MonoBehaviour
 	    };
 
 	    MaximumEnemies = Time.fixedTime * 2 + StartEnemies;
+
         Debug.Log("Maximum Enemies should be: " + MaximumEnemies + 
                     ". Actual enemies: " + gameObject.transform.childCount);
 
@@ -48,8 +51,6 @@ public class EnemySpawner : MonoBehaviour
         //&& SpawnTimer <= 0
         {
             
-            
-
             SpawnEnemy();
 	       //SpawnTimer = SpawnRate;
 	    }
