@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public float SpawnMaxX;
     public float SpawnMinY;
     public float SpawnMaxY;
+    public int EnemyRandomizer;
 
     public float SpawnRate;
     public float MaximumEnemies;
@@ -34,8 +35,10 @@ public class EnemySpawner : MonoBehaviour
 	        
 	    };
         
+
         while (transform.childCount < MaximumEnemies && SpawnTimer <= 0)
-	    {
+        {
+            EnemyRandomizer = Random.Range(0, Enemies.Length);
             SpawnEnemy(0);
 	        SpawnTimer = SpawnRate;
 	    }
@@ -45,7 +48,7 @@ public class EnemySpawner : MonoBehaviour
     {
         var arrayRandomizer = Random.Range(0, 4);
        
-        var instance = Instantiate(Enemies[enemyIndex], new Vector2(_coordinates[arrayRandomizer,0], _coordinates[arrayRandomizer,1]), Quaternion.identity) as GameObject;
+        var instance = Instantiate(Enemies[EnemyRandomizer], new Vector2(_coordinates[arrayRandomizer,0], _coordinates[arrayRandomizer,1]), Quaternion.identity) as GameObject;
 
         //var randomSize = (Random.Range(0.1f, 2.5f));
         //instance.transform.localScale += new Vector3(randomSize, randomSize, 0);
