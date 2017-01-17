@@ -4,8 +4,6 @@ using JetBrains.Annotations;
 
 public class PlayerController : Movement
 {
-    public float PlayerSpeed;
-    public float RotationSpeed;
     public float MaxHealth = 5;
     public float CurrentHealth;
     public Rigidbody2D _rbody;
@@ -37,12 +35,12 @@ public class PlayerController : Movement
         if (slow == true)
         {
             MoveSlow(_rbody, inputX, inputY, PlayerSpeed);
-            Rotate(rotationInputX, rotationInputY, RotationSpeed);
+            Rotate(rotationInputX, rotationInputY, PlayerRotationSpeed);
         }
         else
         {
-            Move(_rbody, inputX, inputY, PlayerSpeed);
-            Rotate(rotationInputX, rotationInputY, RotationSpeed);
+            Move(inputX, inputY);
+            Rotate(rotationInputX, rotationInputY, PlayerRotationSpeed);
         };
     }
 

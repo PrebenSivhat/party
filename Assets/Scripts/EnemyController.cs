@@ -3,11 +3,7 @@ using System.Collections;
 
 public class EnemyController : Movement
 {
-    public float MaxSpeed;
-    public float MinSpeed;    
-    public float MaxRotationSpeed;
-    public float MinRotationSpeed;
-
+  
     private float ConstantSpeed;
     private float ConstantRotationSpeed;
     public Rigidbody2D _rbody;
@@ -16,16 +12,17 @@ public class EnemyController : Movement
 
     private void Start()
     {
-       ConstantRotationSpeed = Random.Range(MinRotationSpeed, MaxRotationSpeed);
-       ConstantSpeed = Random.Range(MinSpeed, MaxSpeed);
+       ConstantRotationSpeed = Random.Range(EnemyMinRotationSpeed, EnemyMaxRotationSpeed);
+       ConstantSpeed = Random.Range(EnemyMinSpeed, EnemyMaxSpeed);
        _rbody = GetComponent<Rigidbody2D>();
-        Move(_rbody, Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(MinSpeed, MaxSpeed));
+        Move(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
     }
 
     private void Update()
     {
-     _rbody.velocity = ConstantSpeed * (_rbody.velocity.normalized);
-     Rotate(1f, -1f, ConstantRotationSpeed);
+        // Keep moving object with constant speed
+        _rbody.velocity = ConstantSpeed * (_rbody.velocity.normalized);
+        Rotate(1f, -1f, ConstantRotationSpeed);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
