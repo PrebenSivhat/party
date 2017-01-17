@@ -28,7 +28,7 @@ public class EnemyController : Movement
      Rotate(1f, -1f, ConstantRotationSpeed);
     }
 
-    private void OnTriggerEnter2D(PolygonCollider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         switch (other.tag)
         {

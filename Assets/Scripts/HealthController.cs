@@ -5,6 +5,8 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class HealthController : MonoBehaviour
 {
+    
+    private static int StartHealth;
 
     public static int PlayerHealth1;
     public static int PlayerHealth2;
@@ -13,10 +15,11 @@ public class HealthController : MonoBehaviour
 
     void Start()
     {
-        PlayerHealth1 = 1;
-        PlayerHealth2 = 1;
-        PlayerHealth3 = 1;
-        PlayerHealth4 = 1;
+        StartHealth = 5;
+        PlayerHealth1 = StartHealth;
+        PlayerHealth2 = StartHealth;
+        PlayerHealth3 = StartHealth;
+        PlayerHealth4 = StartHealth;
     }
 
     public static void Damage(GameObject player)

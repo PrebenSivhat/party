@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Linq.Expressions;
+using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
@@ -11,11 +12,14 @@ public class EnemySpawner : MonoBehaviour
     public float SpawnMaxX;
     public float SpawnMinY;
     public float SpawnMaxY;
-    public int EnemyRandomizer;
+    public int PrefabRandomizer;
+
 
     public float SpawnRate;
-    public float MaximumEnemies;
+    public float StartEnemies;
     public GameObject[] Enemies;
+
+    private float MaximumEnemies;
     private float SpawnTimer = 1f;
     private float[,] _coordinates;
     
@@ -34,25 +38,38 @@ public class EnemySpawner : MonoBehaviour
             {SpawnMaxX,                             Random.Range(SpawnMinY, SpawnMaxY)}
 	        
 	    };
-        
 
-        while (transform.childCount < MaximumEnemies && SpawnTimer <= 0)
+	    MaximumEnemies = Time.fixedTime * 2 + StartEnemies;
+        Debug.Log("Maximum Enemies should be: " + MaximumEnemies + 
+                    ". Actual enemies: " + gameObject.transform.childCount);
+
+
+        while (transform.childCount < MaximumEnemies)
+        //&& SpawnTimer <= 0
         {
-            EnemyRandomizer = Random.Range(0, Enemies.Length);
-            SpawnEnemy(0);
-	        SpawnTimer = SpawnRate;
+            
+            
+
+            SpawnEnemy();
+	       //SpawnTimer = SpawnRate;
 	    }
     }
 
-    void SpawnEnemy(int enemyIndex)
+    void SpawnEnemy()
     {
-        var arrayRandomizer = Random.Range(0, 4);
-       
-        var instance = Instantiate(Enemies[EnemyRandomizer], new Vector2(_coordinates[arrayRandomizer,0], _coordinates[arrayRandomizer,1]), Quaternion.identity) as GameObject;
+        var EnemySpawnRandomizer = Random.Range(0, 4);
+        PrefabRandomizer = Random.Range(0, Enemies.Length);
+        {
+            var instance = Instantiate(Enemies[PrefabRandomizer], new Vector2(_coordinates[EnemySpawnRandomizer,0], _coordinates[EnemySpawnRandomizer,1]), Quaternion.identity) as GameObject;
+            instance.transform.SetParent(transform);
+            instance.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0f, 2f), Random.Range(0f, 2f), Random.Range(0f, 2f), 1f);
+        }
+
+
 
         //var randomSize = (Random.Range(0.1f, 2.5f));
         //instance.transform.localScale += new Vector3(randomSize, randomSize, 0);
         //instance.transform.parent = this.transform;
-   }
+    }
 
 }
