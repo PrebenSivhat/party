@@ -35,14 +35,28 @@ public class PlayerController : Movement
         if (slow == true)
         {
             MoveSlow(_rbody, inputX, inputY, PlayerSpeed);
-            Rotate(rotationInputX, rotationInputY, PlayerRotationSpeed);
+            Rotate(-rotationInputX, rotationInputY, PlayerRotationSpeed);
         }
         else
         {
             Move(inputX, inputY);
-            Rotate(rotationInputX, rotationInputY, PlayerRotationSpeed);
+            Rotate(-rotationInputX, rotationInputY, PlayerRotationSpeed);
         };
+
+        if (inputX > 0.2f || inputX < -0.2f || inputY > 0.2f || inputY < -0.2f)
+        {
+            float _angle;
+            var _axis = new Vector3(0, 0, 0);
+            
+            gameObject.transform.rotation = new Quaternion(inputX -0.1f, inputY, transform.rotation.z, 0).ToAngleAxis(out _angle, out _axis);
+            
+        }
+
+        
+
     }
+
+
 
     private void GetPlayerInput()
     {
