@@ -14,7 +14,20 @@ public class Movement : Settings
             case ("Player2"):
             case ("Player3"):
             case ("Player4"):
-                _rbody.velocity = new Vector2(Mathf.Lerp(0, input_x, PlayerSpeed) * PlayerSpeed * 0.8f, Mathf.Lerp(0, input_y, PlayerSpeed) * PlayerSpeed * 0.8f);
+            // Lav variabler
+                Vector3 pos = transform.position;
+                Quaternion rot = transform.rotation;
+                float z = rot.eulerAngles.z;
+            // Ændr Z angle via input
+                z -= input_x * PlayerRotationSpeed * Time.deltaTime;
+            // Sæt quaternion
+                rot = Quaternion.Euler(0, 0, z);
+            // Lav rotationen
+                transform.rotation = rot;
+            // Bevæg player
+                Vector3 velocity = new Vector3(0, input_y * PlayerSpeed * Time.deltaTime, 0);
+                pos += rot * velocity; 
+                transform.position = pos;
                 break;
             case ("Enemy"):
                 _rbody.velocity = new Vector2(input_x, input_y);

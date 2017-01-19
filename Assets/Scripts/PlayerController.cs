@@ -40,15 +40,12 @@ public class PlayerController : Movement
         else
         {
             Move(inputX, inputY);
-            Rotate(-rotationInputX, rotationInputY, PlayerRotationSpeed);
         };
 
-        if (inputX > 0.2f || inputX < -0.2f || inputY > 0.2f || inputY < -0.2f)
-        {
-
-            gameObject.transform.rotation = new Quaternion(inputX, inputY, transform.rotation.z, 0);
-
-        }
+    //  if (inputX > 0.2f || inputX < -0.2f || inputY > 0.2f || inputY < -0.2f)
+    //  {
+   //       gameObject.transform.rotation = new Quaternion(inputX, inputY, transform.rotation.z, 0);
+//      }
 
         
 
