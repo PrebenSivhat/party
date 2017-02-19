@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] Enemies;
 
     private float MaximumEnemies;
-    private float SpawnTimer = 1f;
+    //private float SpawnTimer = 1f;
     private float[,] _coordinates;
     
 	void Start ()
@@ -43,8 +43,8 @@ public class EnemySpawner : MonoBehaviour
 
 	    MaximumEnemies = Time.fixedTime * 2 + StartEnemies;
 
-        Debug.Log("Maximum Enemies should be: " + MaximumEnemies + 
-                    ". Actual enemies: " + gameObject.transform.childCount);
+        //Debug.Log("Maximum Enemies should be: " + MaximumEnemies + 
+        //            ". Actual enemies: " + gameObject.transform.childCount);
 
 
         while (transform.childCount < MaximumEnemies)
@@ -61,7 +61,10 @@ public class EnemySpawner : MonoBehaviour
         var EnemySpawnRandomizer = Random.Range(0, 4);
         PrefabRandomizer = Random.Range(0, Enemies.Length);
         {
-            var instance = Instantiate(Enemies[PrefabRandomizer], new Vector2(_coordinates[EnemySpawnRandomizer,0], _coordinates[EnemySpawnRandomizer,1]), Quaternion.identity) as GameObject;
+            var instance = Instantiate(Enemies[PrefabRandomizer], new Vector2(_coordinates[EnemySpawnRandomizer,0], 
+                _coordinates[EnemySpawnRandomizer,1]), 
+                Quaternion.identity) as GameObject;
+
             instance.transform.SetParent(transform);
             instance.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0f, 2f), Random.Range(0f, 2f), Random.Range(0f, 2f), 1f);
         }

@@ -17,9 +17,17 @@ public class CollisionManager : MonoBehaviour {
     {
         if (other.tag == "Enemy")
         {
-            //Debug.Log("Collided with enemy!!!");
             HealthController.Damage(gameObject);
         }
+
+        if (other.tag == "Portal_Level_01")
+        {
+            Debug.Log("Should load level_01 now!");
+            GameObject.Find("LevelManager").GetComponent<LevelManager>().LoadLevel("02 Level_01");
+
+            // LevelManager.LoadLevel("02 Level_01");
+        }
+
     }
 
 

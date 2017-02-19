@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 public class PlayerPrefsManager : MonoBehaviour {
 
 	const string MASTER_VOLUME_KEY = "master_volume";
-	const string DIFFICULTY_KEY = "difficulty";
-	const string LEVEL_KEY = "level_unlocked_";
+    const string DIFFICULTY_KEY = "difficulty";
+    const string PLAYER_KEY = "number_of_players";
+    const string LEVEL_KEY = "level_unlocked_";
 
 	// level_unlocked_1
 
@@ -22,6 +23,19 @@ public class PlayerPrefsManager : MonoBehaviour {
 	{
 		return PlayerPrefs.GetFloat(MASTER_VOLUME_KEY);
 	}
+
+    public static void SetNumberOfPlayers(int players)
+    {
+        if (players >= 0 && players <= 3)
+        {
+            PlayerPrefs.SetInt(PLAYER_KEY, players);
+        } else { Debug.LogError("NUMBER OF PLAYERS OUT OF RANGE!!!!"); }
+    }
+
+    public static int GetNumberOfPlayers()
+    {
+        return PlayerPrefs.GetInt(PLAYER_KEY);
+    }
 	
 	public static void UnlockLevel(int level)
 	{

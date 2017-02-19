@@ -10,4 +10,5 @@ public class Settings : MonoBehaviour {
     public float EnemyMinSpeed = 1f;
     public float EnemyMaxRotationSpeed = 20f;
     public float EnemyMinRotationSpeed = 10f;
+    
 }

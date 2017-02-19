@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour {
 
 	public int currentLevel;
-	private Scene activeScene;
+    public static bool GameLevelActive = false;
+	//private Scene activeScene;
 
 	public float autoLoadNextLevelAfter;
 
@@ -13,24 +14,26 @@ public class LevelManager : MonoBehaviour {
 	{
 		if(autoLoadNextLevelAfter <= 0)
 		{
-			Debug.Log("Level auto load disabled");
+			//Debug.Log("Level auto load disabled");
 		}
 		else
 		{
 			Invoke("LoadNextLevel", autoLoadNextLevelAfter);
 		}
-
+        
 	}
 
     
 	public void LoadLevel(string name)
 	{
-		Debug.Log("LoadLevel requested for: " + name + " and Difficulty is:" + PlayerPrefsManager.GetDifficulty());
+	    GameLevelActive = false;
+        //Debug.Log("LoadLevel requested for: " + name + " and Difficulty is:" + PlayerPrefsManager.GetDifficulty());
 		SceneManager.LoadScene(name);
 	}
 
     public void RestartLevel(string name)
     {
+        GameLevelActive = false;
         SceneManager.LoadScene(name);
 
     }
@@ -56,9 +59,11 @@ public class LevelManager : MonoBehaviour {
 	public void LoadLastLevel ()
 	{
 		SceneManager.LoadScene("Level_0" + currentLevel);
-		
 	}
 
-   
+    public void CallPlayerSpawn()
+    {
+        //PlayerSpawner.SpawnPlayers();
+    }
 
 }

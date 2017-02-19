@@ -25,61 +25,43 @@ public class ScoreController : MonoBehaviour
 
     void Start ()
     {
-        _numberOfPlayersInGame = 0;
+        _numberOfPlayersInGame = PlayerPrefsManager.GetNumberOfPlayers();
         CheckForAlivePlayers = true;
         Points = 1;
 
+        /*
         if (Points != 1)
         {
             Debug.LogError("Points should be 0! instead points are: " + Points);
         }
+        */
         
+        //Debug.Log("Player1 has this many points in start of round: " + PointsPlayer1);
+        //Debug.Log("Player2 has this many points in start of round: " + PointsPlayer2);
 
-
-
-
-        Debug.Log("Player1 has this many points in start of round: " + PointsPlayer1);
-        Debug.Log("Player2 has this many points in start of round: " + PointsPlayer2);
-
-        if (GameObject.Find("Player1") != null)
-        {
-            Debug.Log("player1 is in the game!");
-            _numberOfPlayersInGame += 1;
-        }
-        if (GameObject.Find("Player2") != null)
-        {
-            Debug.Log("player2 is in the game!");
-            _numberOfPlayersInGame += 1;
-
-        }
-        if (GameObject.Find("Player3") != null)
-        {
-            Debug.Log("player3 is in the game!");
-            _numberOfPlayersInGame += 1;
-
-        }
-        if (GameObject.Find("Player4") != null)
-        {
-            Debug.Log("player4 is in the game!");
-            _numberOfPlayersInGame += 1;
-        }
-
+        
     }
 
     void Update()
     {
 
-        if (CheckForAlivePlayers == true)
+            
+        if (CheckForAlivePlayers == true && LevelManager.GameLevelActive == true)
+        //GameObject.Find("PlayerSpawner").GetComponent<PlayerSpawner>().GameIsStarted == true)
         {
-            if (GameObject.Find("Player1") == null &&
-                GameObject.Find("Player2") == null &&
-                GameObject.Find("Player3") == null &&
-                GameObject.Find("Player4") == null)
+            if (GameObject.Find("Player1(Clone)") == null &&
+                GameObject.Find("Player2(Clone)") == null &&
+                GameObject.Find("Player3(Clone)") == null &&
+                GameObject.Find("Player4(Clone)") == null)
             {
                 PlayersAlive = false;
-                CreateRestartButton();
+                //CreateRestartButton();
                 CheckForAlivePlayers = false;
-                
+                LevelManager.GameLevelActive = false;
+
+                GameObject.Find("LevelManager").GetComponent<LevelManager>().LoadLevel("02 Level_00");
+                //LevelManager.LoadLevel("02 Level_00");
+
 
             }
             else
