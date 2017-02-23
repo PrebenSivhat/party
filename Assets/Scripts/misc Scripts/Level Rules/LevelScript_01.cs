@@ -9,10 +9,15 @@ public class LevelScript_01 : MonoBehaviour {
 	{
 	    LevelManager.GameLevelActive = true;
         Debug.Log("Should spawn UI now!");
-        GameObject.FindGameObjectWithTag("CanvasUI").GetComponent<SpawnPlayerUI>().SpawnThePlayerUI();
+        
 
 	}
-	
+
+    void Start()
+    {
+        GameObject.FindGameObjectWithTag("CanvasUI").GetComponent<SpawnPlayerUI>().SpawnThePlayerUI();
+    }
+
 	// Update is called once per frame
 	void Update () {
 		
